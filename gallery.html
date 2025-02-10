@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-family: Arial, sans-serif;
+            background-color: #2c2f33;
+            color: white;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1c1e22;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            transition: 0.3s;
+        }
+        .sidebar h2 {
+            color: #00ffcc;
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #444;
+            transition: 0.3s;
+        }
+        .sidebar ul li a:hover {
+            background-color: #00ffcc;
+            color: #000;
+        }
+        .dropdown {
+            display: none;
+            flex-direction: column;
+            background-color: #333;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 180px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar ul li:hover .dropdown {
+            display: flex;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+            width: 100%;
+            text-align: center;
+        }
+        .section h1 {
+            font-size: 36px;
+            color: #00ffcc;
+        }
+        .gallery {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: none;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .gallery img.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .prev:hover, .next:hover {
+            background-color: #00ffcc;
+            color: #000;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>My Portfolio</h2>
+        <ul>
+            <li><a href="main.html">🏠 Home</a></li>
+            <li><a href="about.html">👤 About Me</a></li>
+            <li><a href="services.html">📋 Services</a></li>
+            <li>
+                <a href="gallery.html">🖼 Gallery &#8594</a>
+                <div class="dropdown">
+                    <a href="certificates.html">🏅 Certificates</a>
+                    <a href="achievements.html">🏆 Achievements</a>
+                </div>
+            </li>
+            <li><a href="contact.html">💬 Contact Me</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="section">
+            <h1>Gallery</h1>
+            <div class="gallery">
+                <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+                <img src="techno.jpg" class="active" alt="Gallery Image 1">
+                <img src="techno.jpeg" alt="Gallery Image 2">
+                <img src="technicalquizprize.jpeg" alt="Gallery Image 3">
+                <img src="technicalquiz.jpeg" alt="Gallery Image 4">
+                <img src="technovial_expo.jpg" alt="Gallery Image 5">
+                <img src="projectexpo24.jpeg" alt="Gallery Image 6">
+                <img src="webcraft1.jpg" alt="Gallery Image 7">
+                <img src="webcraft1.jpeg" alt="Gallery Image 8">
+                <img src="webcraft2.jpg" alt="Gallery Image 9">
+                <img src="webcraft2.0.jpeg" alt="Gallery Image 10">
+                <img src="projectexpoentitledasiotprize.jpeg" alt="Gallery Image 11">
+                <img src="projectexpoentitledasiot.jpeg" alt="Gallery Image 12">
+                <button class="next" onclick="changeImage(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".gallery img");
+        
+        function changeImage(direction) {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add("active");
+        }
+
+        setInterval(() => {
+            changeImage(1);
+        }, 3000);
+    </script>
+</body>
+</html>
